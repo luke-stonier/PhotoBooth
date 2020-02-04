@@ -12,7 +12,7 @@ def __draw_label(img, text, pos, bg_color):
     font_face = cv2.FONT_HERSHEY_SIMPLEX
     scale = 0.4
     color = (255, 255, 255)
-    thickness = cv2.FILLED
+    thickness = -1#cv2.FILLED
     margin = 2
 
     txt_size = cv2.getTextSize(text, font_face, scale, thickness)
