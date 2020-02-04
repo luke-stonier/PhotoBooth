@@ -76,8 +76,8 @@ def takeVideo(fileName):
 
     #start
 
-    width = int(webcam.get(cv2.CAP_PROP_FRAME_WIDTH) + 0.5)
-    height = int(webcam.get(cv2.CAP_PROP_FRAME_HEIGHT) + 0.5)
+    width = int(webcam.get(cv2.CV_CAP_PROP_FRAME_WIDTH) + 0.5)
+    height = int(webcam.get(cv2.CV_CAP_PROP_FRAME_HEIGHT) + 0.5)
     size = (width, height)
     fourcc = cv2.VideoWriter_fourcc(*'XVID')
     out = cv2.VideoWriter(videoFileName, fourcc, 20.0, size)
