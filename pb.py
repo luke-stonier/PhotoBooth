@@ -7,6 +7,7 @@ webcam = None
 key = None
 frame = None
 
+
 def __draw_label(img, text, pos, bg_color):
     font_face = cv2.FONT_HERSHEY_SIMPLEX
     scale = 0.4
@@ -22,6 +23,7 @@ def __draw_label(img, text, pos, bg_color):
     cv2.rectangle(img, pos, (end_x, end_y), bg_color, thickness)
     cv2.putText(img, text, pos, font_face, scale, color, 1, cv2.LINE_AA)
 
+
 def setup():
     print("setup")
     global webcam
@@ -31,18 +33,23 @@ def setup():
     print("Ready")
     startAppLoop()
 
+
 def startAppLoop():
     global key
     global frame
     while True:
         check, frame = webcam.read()
+        cv2.namedWindow("Capturing", cv2.WND_PROP_FULLSCREEN)
+        cv2.setWindowProperty(
+            "Capturing", cv2.WND_PROP_FULLSCREEN, cv2.cv.CV_WINDOW_FULLSCREEN
+        )
         cv2.imshow("Capturing", frame)
         try:
             key = cv2.waitKey(1)
 
             if key == ord("s"):
                 takePicture()
-                #setup()
+                # setup()
             elif key == ord("q"):
                 endProcess()
                 break
@@ -57,6 +64,7 @@ def startAppLoop():
             cv2.destroyAllWindows()
             break
 
+
 def takePicture():
     global frame
     global webcam
@@ -64,9 +72,10 @@ def takePicture():
     date = datetime.datetime.now()
     fileName = date.strftime("%d-%m-%Y-%H-%M-%S")
     imageFileName = "./Data/" + fileName + ".jpg"
-    cv2.imwrite(filename= imageFileName, img=frame)
+    cv2.imwrite(filename=imageFileName, img=frame)
     print("Image saved!")
     takeVideo(fileName)
+
 
 def takeVideo(fileName):
     global frame
@@ -74,29 +83,34 @@ def takeVideo(fileName):
     print("Take Video")
     videoFileName = "./Data/" + fileName + ".avi"
 
-    #start
+    # start
 
-    width = int(webcam.get(cv2.CV_CAP_PROP_FRAME_WIDTH) + 0.5)
-    height = int(webcam.get(cv2.CV_CAP_PROP_FRAME_HEIGHT) + 0.5)
+    width = int(webcam.get(cv2.WND_PROP_FULLSCREEN) + 0.5)
+    height = int(webcam.get(cv2.WND_PROP_FULLSCREEN) + 0.5)
     size = (width, height)
-    fourcc = cv2.VideoWriter_fourcc(*'XVID')
+    fourcc = cv2.VideoWriter_fourcc(*"XVID")
     out = cv2.VideoWriter(videoFileName, fourcc, 20.0, size)
     videoLength = 5
 
     now = time.time()
     end = now + videoLength
 
-    while(time.time() < end):
+    while time.time() < end:
         _, _frame = webcam.read()
         textFrame = copy.copy(_frame)
-        __draw_label(textFrame, 'RECORDING', (25,25), (0,0,0))
-        cv2.imshow('Capturing', textFrame)
+        __draw_label(textFrame, "RECORDING", (25, 25), (0, 0, 0))
+        cv2.namedWindow("Capturing", cv2.WND_PROP_FULLSCREEN)
+        cv2.setWindowProperty(
+            "Capturing", cv2.WND_PROP_FULLSCREEN, cv2.cv.CV_WINDOW_FULLSCREEN
+        )
+        cv2.imshow("Capturing", textFrame)
         out.write(_frame)
-        if cv2.waitKey(1) & 0xFF == ord('q'):
+        if cv2.waitKey(1) & 0xFF == ord("q"):
             break
 
-    #end
+    # end
     print("Video saved!")
+
 
 def endProcess():
     global webcam
@@ -106,7 +120,9 @@ def endProcess():
     print("Program ended.")
     cv2.destroyAllWindows()
 
+
 def postData():
     print("Make request")
+
 
 setup()
