@@ -84,7 +84,7 @@ def takeVideo(fileName):
     width = int(100)
     height = int(100)
     size = (width, height)
-    fourcc = cv2.cv.CV_FOURCC(*'XVID')
+    fourcc = cv2.cv.CV_FOURCC('M','J','P','G')
     out = cv2.VideoWriter(videoFileName, fourcc, 20.0, size)
     videoLength = 5
 
