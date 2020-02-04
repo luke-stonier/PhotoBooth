@@ -37,10 +37,6 @@ def setup():
 def startAppLoop():
     global key
     global frame
-    cv2.namedWindow("Capturing", cv2.WND_PROP_FULLSCREEN)
-    cv2.setWindowProperty(
-        "Capturing", cv2.WND_PROP_FULLSCREEN, cv2.cv.CV_WINDOW_FULLSCREEN
-    )
     while True:
         check, frame = webcam.read()
         cv2.imshow("Capturing", frame)
