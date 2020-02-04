@@ -89,7 +89,7 @@ def takeVideo(fileName):
     videoLength = 5
 
     now = time.time()
-    end = now + videoLength4
+    end = now + videoLength
 
     while time.time() < end:
         _, _frame = webcam.read()
