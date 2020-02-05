@@ -35,8 +35,8 @@ def setup():
     webcam = cv2.VideoCapture(0)
     width = 1280
     height = 720
-    webcam.set(cv2.CAP_PROP_FRAME_WIDTH, width)
-    webcam.set(cv2.CAP_PROP_FRAME_HEIGHT, height)
+    webcam.set(3, width)
+    webcam.set(4, height)
     size = (width, height)
     print("Ready")
     startAppLoop()
