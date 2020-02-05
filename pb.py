@@ -33,10 +33,8 @@ def setup():
 
     key = cv2.waitKey(1)
     webcam = cv2.VideoCapture(0)
-    width = 1280
-    height = 720
-    webcam.set(3, width)
-    webcam.set(4, height)
+    width = int(webcam.get(3) + 0.5)
+    height = int(webcam.get(4) + 0.5)
     size = (width, height)
     print("Ready")
     startAppLoop()
@@ -89,8 +87,8 @@ def takeVideo(fileName):
     videoFileName = "./Data/" + fileName + ".avi"
 
     # start
-    fourcc = cv2.cv.CV_FOURCC(*'XVID')
-    #fourcc = cv2.VideoWriter_fourcc(*'XVID')
+    #fourcc = cv2.cv.CV_FOURCC(*'XVID')
+    fourcc = cv2.VideoWriter_fourcc(*'XVID')
     out = cv2.VideoWriter(videoFileName, fourcc, 20.0, size)
     videoLength = 5
 
