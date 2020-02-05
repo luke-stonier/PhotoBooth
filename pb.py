@@ -89,8 +89,8 @@ def takeVideo(fileName):
     videoFileName = "./Data/" + fileName + ".avi"
 
     # start
-    #fourcc = cv2.cv.CV_FOURCC('M','P','E','G')
-    fourcc = cv2.VideoWriter_fourcc(*'XVID')
+    fourcc = cv2.cv.CV_FOURCC(*'XVID')
+    #fourcc = cv2.VideoWriter_fourcc(*'XVID')
     out = cv2.VideoWriter(videoFileName, fourcc, 20.0, size)
     videoLength = 5
 
