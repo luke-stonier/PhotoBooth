@@ -81,8 +81,10 @@ def takeVideo(fileName):
 
     # start
 
-    width = int(webcam.get(cv2.CAP_PROP_FRAME_WIDTH))
-    height = int(webcam.get(cv2.CAP_PROP_FRAME_HEIGHT))
+    width = 1280
+    height = 720
+    cap.set(cv2.CAP_PROP_FRAME_WIDTH, width)
+    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, height)
     size = (width, height)
     #size = (100, 100)
     #fourcc = cv2.cv.CV_FOURCC('M','P','E','G')
