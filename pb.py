@@ -22,7 +22,7 @@ def __draw_label(img, text, pos, bg_color):
     end_y = pos[1] - txt_size[0][1] - margin
 
     cv2.rectangle(img, pos, (end_x, end_y), bg_color, thickness)
-    cv2.putText(img, text, pos, font_face, scale, color, 1, cv2.LINE_AA)
+    cv2.putText(img, text, pos, font_face, scale, color, 1, 16)
 
 
 def setup():
