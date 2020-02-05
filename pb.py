@@ -98,7 +98,7 @@ def takeVideo(fileName):
     while time.time() < end:
         _, _frame = webcam.read()
         textFrame = copy.copy(_frame)
-        #__draw_label(textFrame, "RECORDING", (25, 25), (0, 0, 0))
+        __draw_label(textFrame, "RECORDING", (25, 25), (0, 0, 0))
         cv2.imshow("Capturing", textFrame)
         out.write(_frame)
         if cv2.waitKey(1) & 0xFF == ord("q"):
