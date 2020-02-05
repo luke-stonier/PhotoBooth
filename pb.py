@@ -6,6 +6,7 @@ import copy
 webcam = None
 key = None
 frame = None
+size = (0, 0)
 
 
 def __draw_label(img, text, pos, bg_color):
@@ -28,8 +29,15 @@ def setup():
     print("setup")
     global webcam
     global key
+    global size
+
     key = cv2.waitKey(1)
     webcam = cv2.VideoCapture(0)
+    width = 1280
+    height = 720
+    webcam.set(cv2.CAP_PROP_FRAME_WIDTH, width)
+    webcam.set(cv2.CAP_PROP_FRAME_HEIGHT, height)
+    size = (width, height)
     print("Ready")
     startAppLoop()
 
@@ -76,17 +84,11 @@ def takePicture():
 def takeVideo(fileName):
     global frame
     global webcam
+    global size
     print("Take Video")
     videoFileName = "./Data/" + fileName + ".avi"
 
     # start
-
-    width = 1280
-    height = 720
-    cap.set(cv2.CAP_PROP_FRAME_WIDTH, width)
-    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, height)
-    size = (width, height)
-    #size = (100, 100)
     #fourcc = cv2.cv.CV_FOURCC('M','P','E','G')
     fourcc = cv2.VideoWriter_fourcc(*'XVID')
     out = cv2.VideoWriter(videoFileName, fourcc, 20.0, size)
